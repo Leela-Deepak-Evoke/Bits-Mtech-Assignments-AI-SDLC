@@ -1,0 +1,30 @@
+[project]
+name = "reminder-agent"
+version = "0.1.0"
+description = "Natural-Language Reminder Agent (Part-1B, Sample A)"
+requires-python = ">=3.11"
+dependencies = ["jsonschema>=4.20", "tzdata>=2024.1", "anthropic>=0.40"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff", "mypy"]
+
+[project.scripts]
+remind = "reminder_agent.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src"]
+extend-exclude = ["evidence"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "N", "S", "T20", "BLE", "ARG"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "ARG"]
+".harness/**" = ["T201", "S101", "S603", "S607"]
+"evals/**" = ["T201", "S101"]

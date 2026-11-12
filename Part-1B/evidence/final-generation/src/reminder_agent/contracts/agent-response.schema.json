@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:part1b:agent-response:1.0",
+  "title": "AgentResponse",
+  "description": "Contract for every response the reminder agent returns to a caller. Exactly one of six shapes, discriminated by `type`. Cross-field invariants (offset/UTC consistency, ordering) are specified in spec.md section 5 and enforced in code.",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/ReminderCreated" },
+    { "$ref": "#/$defs/ReminderRescheduled" },
+    { "$ref": "#/$defs/ReminderSnoozed" },
+    { "$ref": "#/$defs/ClarificationNeeded" },
+    { "$ref": "#/$defs/Refused" },
+    { "$ref": "#/$defs/Error" }
+  ],
+  "$defs": {
+    "isoWithOffset": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,6})?[+-]\\d{2}:\\d{2}$"
+    },
+    "isoUtc": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,6})?Z$"
+    },
+    "message": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^[^\\u0000-\\u001f\\u007f]*$" },
+    "assumption": {
+      "enum": [
+        "default_time_0900",
+        "named_period_default",
+        "rolled_to_next_day",
+        "relative_to_now",
+        "relative_to_previous_due",
+        "default_snooze_10_min",
+        "month_end_clamped",
+        "dst_gap_shifted_forward",
+        "dst_overlap_first_occurrence",
+        "timezone_from_context"
+      ]
+    },
+    "assumptions": { "type": "array", "items": { "$ref": "#/$defs/assumption" }, "uniqueItems": true, "maxItems": 5 },
+    "Reminder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "due_at", "due_at_utc", "timezone", "status", "snooze_count", "created_at", "updated_at"],
+      "properties": {
+        "id":           { "type": "string", "pattern": "^rem_[0-9a-z]{8,32}$" },
+        "title":        { "type": "string", "minLength": 1, "maxLength": 200, "pattern": "^[^\\u0000-\\u001f\\u007f]*$" },
+        "due_at":       { "$ref": "#/$defs/isoWithOffset" },
+        "due_at_utc":   { "$ref": "#/$defs/isoUtc" },
+        "timezone":     { "type": "string", "pattern": "^[A-Za-z_]+(/[A-Za-z0-9_+-]+)*$", "maxLength": 64 },
+        "status":       { "enum": ["scheduled", "fired", "cancelled"] },
+        "snooze_count": { "type": "integer", "minimum": 0, "maximum": 20 },
+        "created_at":   { "$ref": "#/$defs/isoUtc" },
+        "updated_at":   { "$ref": "#/$defs/isoUtc" }
+      }
+    },
+    "ReminderCreated": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "type", "message", "reminder", "assumptions"],
+      "properties": {
+        "schema_version": { "const": "1.0" },
+        "type":        { "const": "reminder_created" },
+        "message":     { "$ref": "#/$defs/message" },
+        "reminder":    { "$ref": "#/$defs/Reminder" },
+        "assumptions": { "$ref": "#/$defs/assumptions" }
+      }
+    },
+    "ReminderRescheduled": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "type", "message", "reminder", "previous_due_at", "assumptions"],
+      "properties": {
+        "schema_version":  { "const": "1.0" },
+        "type":            { "const": "reminder_rescheduled" },
+        "message":         { "$ref": "#/$defs/message" },
+        "reminder":        { "$ref": "#/$defs/Reminder" },
+        "previous_due_at": { "$ref": "#/$defs/isoWithOffset" },
+        "assumptions":     { "$ref": "#/$defs/assumptions" }
+      }
+    },
+    "ReminderSnoozed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "type", "message", "reminder", "previous_due_at", "snooze_minutes", "assumptions"],
+      "properties": {
+        "schema_version":  { "const": "1.0" },
+        "type":            { "const": "reminder_snoozed" },
+        "message":         { "$ref": "#/$defs/message" },
+        "reminder":        { "$ref": "#/$defs/Reminder" },
+        "previous_due_at": { "$ref": "#/$defs/isoWithOffset" },
+        "snooze_minutes":  { "type": "integer", "minimum": 1, "maximum": 10080 },
+        "assumptions":     { "$ref": "#/$defs/assumptions" }
+      }
+    },
+    "ClarificationNeeded": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "type", "message", "intent", "missing_fields", "question", "round", "partial"],
+      "properties": {
+        "schema_version": { "const": "1.0" },
+        "type":    { "const": "clarification_needed" },
+        "message": { "$ref": "#/$defs/message" },
+        "intent":  { "enum": ["create", "reschedule", "snooze", "unknown"] },
+        "missing_fields": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "enum": ["title", "date", "time", "time_meridiem", "date_order", "duration", "target"] }
+        },
+        "question": { "type": "string", "minLength": 3, "maxLength": 300, "pattern": "^[^?]*\\?$" },
+        "round":    { "type": "integer", "minimum": 1, "maximum": 3 },
+        "candidates": {
+          "type": "array", "maxItems": 5, "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^rem_[0-9a-z]{8,32}$" }
+        },
+        "partial": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title":  { "type": "string", "maxLength": 200 },
+            "date":   { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+            "time":   { "type": "string", "pattern": "^\\d{2}:\\d{2}$" },
+            "target": { "type": "string", "pattern": "^rem_[0-9a-z]{8,32}$" }
+          }
+        }
+      }
+    },
+    "Refused": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "type", "message", "reason"],
+      "properties": {
+        "schema_version": { "const": "1.0" },
+        "type":    { "const": "refused" },
+        "message": { "$ref": "#/$defs/message" },
+        "reason": {
+          "enum": [
+            "unsupported_intent", "unsafe_request", "past_time", "out_of_range",
+            "reminder_not_found", "invalid_state", "max_clarifications_exceeded",
+            "snooze_limit_reached", "input_invalid"
+          ]
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "type", "message", "code"],
+      "properties": {
+        "schema_version": { "const": "1.0" },
+        "type":    { "const": "error" },
+        "message": { "$ref": "#/$defs/message" },
+        "code":    { "enum": ["llm_unavailable", "llm_timeout", "llm_schema_violation", "storage_error", "internal_error"] }
+      }
+    }
+  }
+}

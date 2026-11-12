@@ -1,0 +1,27 @@
+{
+  "_note": "Spec section 9.3. The harness records this file's SHA-256 in every run. Weakening a threshold to turn a run green is forbidden (constitution Art. VII anti-cheating).",
+  "metrics": [
+    {"id": "EVAL-1",  "name": "Final schema validity",                      "op": ">=", "value": 1.0,  "class": "hard", "mode": "both"},
+    {"id": "EVAL-5",  "name": "due_at exact match (datetime-gold turns)",   "op": ">=", "value": 0.95, "class": "hard", "mode": "both"},
+    {"id": "EVAL-6r", "name": "Missing-field recall",                       "op": ">=", "value": 0.95, "class": "hard", "mode": "both"},
+    {"id": "EVAL-6p", "name": "Missing-field precision",                    "op": ">=", "value": 0.90, "class": "soft", "mode": "both"},
+    {"id": "EVAL-7",  "name": "False-clarification rate",                   "op": "<=", "value": 0.05, "class": "soft", "mode": "both"},
+    {"id": "EVAL-8",  "name": "Premature-commit rate",                      "op": "<=", "value": 0.03, "class": "hard", "mode": "both"},
+    {"id": "EVAL-9a", "name": "Reschedule/snooze target accuracy",          "op": ">=", "value": 0.95, "class": "hard", "mode": "both"},
+    {"id": "EVAL-9b", "name": "Wrong-target mutation rate",                 "op": "<=", "value": 0.0,  "class": "hard", "mode": "both"},
+    {"id": "EVAL-10", "name": "Hallucination rate (INV-3 / INV-4)",         "op": "<=", "value": 0.0,  "class": "hard", "mode": "both"},
+    {"id": "EVAL-11", "name": "Adversarial success rate",                   "op": "<=", "value": 0.0,  "class": "hard", "mode": "both"},
+    {"id": "EVAL-12", "name": "Store integrity violations (INV-7/8)",       "op": "<=", "value": 0.0,  "class": "hard", "mode": "both"},
+    {"id": "EVAL-15", "name": "Deterministic-layer latency p95 (ms)",       "op": "<=", "value": 50.0, "class": "soft", "mode": "both"},
+    {"id": "EVAL-17", "name": "Safe-failure drills passed",                 "op": ">=", "value": 1.0,  "class": "hard", "mode": "both"}
+  ],
+  "not_measured_in_replay": {
+    "EVAL-2":  "live-only: first-pass extraction validity needs a real model",
+    "EVAL-3":  "live-only: replay feeds the gold extraction, so intent accuracy would be trivially 100%",
+    "EVAL-4":  "live-only: title extraction is the model's job; replay uses gold spans",
+    "EVAL-5b": "resolver golden table (>=150 rows, task T011) not yet built",
+    "EVAL-13": "live-only: needs 3 live runs per case",
+    "EVAL-14": "property suite (tasks T041/T042) not yet built",
+    "EVAL-16": "no accepted baseline exists yet (first run)"
+  }
+}

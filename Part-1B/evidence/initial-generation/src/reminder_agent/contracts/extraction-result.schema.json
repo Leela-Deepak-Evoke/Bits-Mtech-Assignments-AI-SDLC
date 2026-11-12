@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:part1b:extraction-result:1.0",
+  "title": "ExtractionResult",
+  "description": "Contract for the LLM's ONLY output. The LLM identifies intent and verbatim spans of the user's message. It never computes dates, ids or timestamps. Invariant (checked in code, not expressible here): for every span, source_text[start:end] == text.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "intent", "title", "time", "duration", "target"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "intent": { "enum": ["create", "reschedule", "snooze", "unsupported", "unknown"] },
+    "unsupported_reason": { "enum": ["recurrence", "bulk_operation", "cancel_or_delete", "off_topic", "other"] },
+    "title":    { "$ref": "#/$defs/spanOrNull" },
+    "time":     { "$ref": "#/$defs/spanOrNull" },
+    "duration": { "$ref": "#/$defs/spanOrNull" },
+    "target":   { "$ref": "#/$defs/spanOrNull" }
+  },
+  "allOf": [
+    { "if": { "properties": { "intent": { "const": "unsupported" } } },
+      "then": { "required": ["unsupported_reason"] } }
+  ],
+  "$defs": {
+    "span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "start", "end"],
+      "properties": {
+        "text":  { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "start": { "type": "integer", "minimum": 0 },
+        "end":   { "type": "integer", "minimum": 1 }
+      }
+    },
+    "spanOrNull": { "oneOf": [ { "type": "null" }, { "$ref": "#/$defs/span" } ] }
+  }
+}
