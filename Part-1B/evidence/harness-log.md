@@ -203,3 +203,91 @@ E501 Line too long (125 > 120)
 - Open item for the reviewer: repair cycle 2 changed a CHECKER (INV-4) and the spec (v1.0.1). Please confirm that reading.
 - **Human decision: PENDING**: to be recorded by a reviewer with `python .harness/log.py decision --decision ACCEPT|REJECT --by "<name>" --notes "..."`. Nothing in this log is, or stands in for, that decision.
 
+## 2026-11-12 18:17:34Z - HARNESS RUN [regression after executor change] (mode=replay, split=all)
+
+- Dataset sha256 `3ee34f86f080c9b2...` verified; thresholds sha256 `0e7b5587fefdd1f0...`
+- **Cases:** 44/44 passed (45 turns)
+- **Layer 1:** 44/44 cases clean
+- **Layer 2:** 44/44 cases clean
+- **Layer 3:** 44/44 cases clean
+
+| Metric | Measured | Threshold | Class | Status |
+|---|---|---|---|---|
+| EVAL-1 Final schema validity | 1 (n=45) | >= 1.0 | hard | PASS |
+| EVAL-5 due_at exact match (datetime-gold turns) | 1 (n=21) | >= 0.95 | hard | PASS |
+| EVAL-6r Missing-field recall | 1 (n=9) | >= 0.95 | hard | PASS |
+| EVAL-6p Missing-field precision | 1 (n=8) | >= 0.9 | soft | PASS |
+| EVAL-7 False-clarification rate | 0 (n=21) | <= 0.05 | soft | PASS |
+| EVAL-8 Premature-commit rate | 0 (n=9) | <= 0.03 | hard | PASS |
+| EVAL-9a Reschedule/snooze target accuracy | 1 (n=4) | >= 0.95 | hard | PASS |
+| EVAL-9b Wrong-target mutation rate | 0 (n=45) | <= 0.0 | hard | PASS |
+| EVAL-10 Hallucination rate (INV-3 / INV-4) | 0 (n=45) | <= 0.0 | hard | PASS |
+| EVAL-11 Adversarial success rate | 0 (n=7) | <= 0.0 | hard | PASS |
+| EVAL-12 Store integrity violations (INV-7/8) | 0 (n=45) | <= 0.0 | hard | PASS |
+| EVAL-15 Deterministic-layer latency p95 (ms) | 1.931 (n=45) | <= 50.0 | soft | PASS |
+| EVAL-17 Safe-failure drills passed | 1 (n=3) | >= 1.0 | hard | PASS |
+
+- Hard metrics failing: none; soft failing: none
+- Metrics not measurable in replay mode: EVAL-2, EVAL-3, EVAL-4, EVAL-5b, EVAL-13, EVAL-14, EVAL-16
+- **Harness recommendation:** ACCEPT_RECOMMENDED (replay scope only)
+- **Human decision:** PENDING
+
+## 2026-11-12 18:17:37Z - LIVE EVAL [offline smoke test] (mode=stub-client (offline smoke test, NOT live evidence), model=claude-haiku-5-5)
+
+- EVAL-2 first-pass extraction validity: 0.9524 (n=126)
+- EVAL-3 intent accuracy: 1.0 (n=120)
+- EVAL-4 title-span accuracy: 1.0 (n=69)
+- EVAL-13 run-to-run stability: 1.0 (n=41)
+- Layer 1/2 (schema + safety) findings: 0
+- Details: `live-eval-results.stub.json`
+
+## 2026-11-12 18:21:52Z - LIVE EVAL [t] (mode=stub-client (offline smoke test, NOT live evidence), model=claude-haiku-5-5)
+
+- EVAL-2 first-pass extraction validity: 1.0 (n=3)
+- EVAL-3 intent accuracy: 1.0 (n=3)
+- EVAL-4 title-span accuracy: 1.0 (n=3)
+- EVAL-13 run-to-run stability: 1.0 (n=3)
+- Layer 1/2 (schema + safety) findings: 0
+- Details: `live-eval-results.stub.json`
+
+## 2026-11-12 18:21:53Z - LIVE EVAL [groq connectivity trial] (mode=live, model=llama-3.3-70b-versatile)
+
+- EVAL-2 first-pass extraction validity: 0.0 (n=2)
+- EVAL-3 intent accuracy: None (n=0)
+- EVAL-4 title-span accuracy: None (n=0)
+- EVAL-13 run-to-run stability: 1.0 (n=2)
+- Layer 1/2 (schema + safety) findings: 0
+- Details: `live-eval-results.json`
+
+## 2026-11-12 18:22:16Z - LIVE EVAL [groq connectivity trial] (mode=live, model=openai/gpt-oss-120b)
+
+- EVAL-2 first-pass extraction validity: 0.0 (n=3)
+- EVAL-3 intent accuracy: 1.0 (n=1)
+- EVAL-4 title-span accuracy: 1.0 (n=1)
+- EVAL-13 run-to-run stability: 1.0 (n=3)
+- Layer 1/2 (schema + safety) findings: 0
+- Details: `live-eval-results.json`
+
+## 2026-11-12 18:22:36Z - LIVE EVAL [groq connectivity trial] (mode=live, model=openai/gpt-oss-120b)
+
+- EVAL-2 first-pass extraction validity: 1.0 (n=3)
+- EVAL-3 intent accuracy: 1.0 (n=3)
+- EVAL-4 title-span accuracy: 1.0 (n=3)
+- EVAL-13 run-to-run stability: 1.0 (n=3)
+- Layer 1/2 (schema + safety) findings: 0
+- Details: `live-eval-results.json`
+
+## 2026-11-12 18:31:44Z - LIVE EVAL [groq full live run (openai/gpt-oss-120b)] (mode=live, model=openai/gpt-oss-120b)
+
+- EVAL-2 first-pass extraction validity: 0.8571 (n=126)
+- EVAL-3 intent accuracy: 1.0 (n=120)
+- EVAL-4 title-span accuracy: 0.913 (n=69)
+- EVAL-13 run-to-run stability: 0.9024 (n=41)
+- Layer 1/2 (schema + safety) findings: 65
+- Details: `live-eval-results.json`
+
+## 2026-11-12 18:34:59Z - FINAL HUMAN DECISION: **ACCEPT**
+
+- **Reviewer:** Subalari Leela Deepak (Roll No. 2026NS93073)
+- **Notes:** Deterministic pipeline accepted; live model (Groq gpt-oss-120b) accepted as prototype only, see ACCEPTANCE.md
+

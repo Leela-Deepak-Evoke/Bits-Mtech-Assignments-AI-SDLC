@@ -1,6 +1,6 @@
 # Specification — Sample A: Natural-Language Reminder Agent
 
-**Version:** 1.0.1 · **Date:** 2026-11-12 · **Status:** Draft for review
+**Version:** 1.0.1 · **Date:** 2026-11-12 · **Status:** Approved (reviewed 2026-11-13)
 **Changelog:** 1.0.1 (PATCH) — INV-4 clarified: a title may come from any user message of the same clarification dialogue (required by FR-4 / AC-4.4 / PROP-8, where the title is given in an earlier turn). Found by the harness on case A-05.
 **Contracts:** `.speckit/contracts/agent-response.schema.json`, `.speckit/contracts/extraction-result.schema.json`
 

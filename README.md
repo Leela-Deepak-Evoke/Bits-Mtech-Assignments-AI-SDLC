@@ -81,6 +81,18 @@ python -m todo.interfaces.api   # start the API
 pytest                      # run tests
 ```
 
+### Run the harness (Part-1A)
+
+The harness runs lint, then security checks, then tests, and ends with an overall PASS/FAIL (exit code 0 = PASS). Every run is appended to `Part-1A/.harness/harness-log.md`.
+
+```bash
+cd Part-1A
+pip install -e ".[dev]"
+python .harness/run_harness.py              # all checks
+python .harness/run_harness.py --skip-audit # offline: skip pip-audit
+python .harness/run_harness.py --only tests # lint | security | tests
+```
+
 ---
 
 ## Part-1B – Natural-Language Reminder Agent
@@ -139,8 +151,33 @@ cd Part-1B
 pip install -e ".[dev]"
 remind --help
 pytest
-python evals/run_eval.py    # run the evaluation set
+python evals/run_eval.py    # deterministic evaluation (replay)
 ```
+
+### Run the harness (Part-1B)
+
+Part-1B has **two evaluation pipelines**. Both append to `Part-1B/evidence/harness-log.md`.
+
+```bash
+cd Part-1B
+pip install -e ".[dev]"
+
+# 1. Deterministic pipeline: replays recorded extractions, no network, no API key. Exit code 0 = PASS.
+python evals/run_eval.py --label "my run"
+
+# 2. Non-deterministic pipeline: the real Claude model extracts, each case is repeated.
+export GROQ_API_KEY=...             # or put it in a git-ignored .env file; never commit it (PowerShell: $env:GROQ_API_KEY="...")
+python evals/run_live_eval.py --runs 3 --pause 1          # Groq (default provider)
+python evals/run_live_eval.py --provider anthropic        # needs ANTHROPIC_API_KEY instead
+python evals/run_live_eval.py --stub-client   # offline smoke test of the pipeline, not real model evidence
+
+# Record the final human decision
+python .harness/log.py decision --decision ACCEPT --by "<your name>" --notes "<why>"
+```
+
+### Acceptance and known limitations
+
+See [Part-1A/ACCEPTANCE.md](Part-1A/ACCEPTANCE.md) and [Part-1B/ACCEPTANCE.md](Part-1B/ACCEPTANCE.md).
 
 ---
 
@@ -173,4 +210,4 @@ Part-1B additionally has `evals/` with the evaluation dataset and runner.
 ## Requirements
 
 - Python 3.11+
-- Part-1B needs an Anthropic API key for live LLM calls
+- Part-1B's live evaluation needs a `GROQ_API_KEY` (or `ANTHROPIC_API_KEY`) environment variable or git-ignored `.env`. No keys or `.env` files are stored in this repo.

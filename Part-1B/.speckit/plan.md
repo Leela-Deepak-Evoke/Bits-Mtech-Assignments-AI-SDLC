@@ -1,6 +1,6 @@
 # Implementation Plan — Natural-Language Reminder Agent
 
-**Version:** 1.0.0 · **Date:** 2026-11-12 · **Status:** Draft for review
+**Version:** 1.0.0 · **Date:** 2026-11-12 · **Status:** Approved (reviewed 2026-11-13)
 **Implements:** `.speckit/spec.md` v1.0.0 · **Contracts:** `.speckit/contracts/*.schema.json`
 
 ---

@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "mode": "stub-client (offline smoke test, NOT live evidence)",
+    "model": "claude-haiku-5-5",
+    "provider": "stub",
+    "runs_per_case": 1,
+    "split": "all",
+    "timestamp": "2026-11-12 18:21:52Z",
+    "cases": 3
+  },
+  "metrics": {
+    "EVAL-2 first-pass extraction validity": {
+      "n": 3,
+      "rate": 1.0
+    },
+    "EVAL-3 intent accuracy": {
+      "n": 3,
+      "rate": 1.0
+    },
+    "EVAL-4 title-span accuracy": {
+      "n": 3,
+      "rate": 1.0
+    },
+    "EVAL-13 run-to-run stability": {
+      "n": 3,
+      "rate": 1.0
+    }
+  },
+  "layer1_2_safety_findings": 0,
+  "cases": [
+    {
+      "id": "N-01",
+      "final_types": [
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "N-02",
+      "final_types": [
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "N-03",
+      "final_types": [
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    }
+  ]
+}

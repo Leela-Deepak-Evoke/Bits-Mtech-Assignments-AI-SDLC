@@ -1,6 +1,6 @@
 # Technical Plan — Smart Todo & Task CLI/API
 
-**Version:** 1.0.0 · **Date:** 2026-11-12 · **Status:** Draft for review
+**Version:** 1.0.0 · **Date:** 2026-11-12 · **Status:** Approved (reviewed 2026-11-13)
 **Inputs:** `.speckit/constitution.md` v1.0.0, `.speckit/spec.md` v1.0.0
 
 ---

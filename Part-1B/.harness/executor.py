@@ -30,8 +30,26 @@ def _ids() -> Any:  # noqa: ANN401
     return lambda: f"rem_new{next(counter):05d}"
 
 
-def run_case(case: dict, dataset: dict) -> list[dict]:
-    """Execute every turn of ``case``; return one record per turn."""
+class RecordingExtractor:
+    """Wraps any extractor (e.g. the live Anthropic one) so the harness can count calls and keep raw outputs."""
+
+    def __init__(self, inner: Any) -> None:  # noqa: ANN401
+        self._inner = inner
+        self.calls = 0
+        self.returned: list[Any] = []
+
+    def extract(self, message: str, ctx: Ctx, candidate_titles: list[str], feedback: str | None) -> Any:  # noqa: ANN401
+        self.calls += 1
+        out = self._inner.extract(message, ctx, candidate_titles, feedback)
+        self.returned.append(out)
+        return out
+
+
+def run_case(case: dict, dataset: dict, live_extractor: Any = None) -> list[dict]:  # noqa: ANN401
+    """Execute every turn of ``case``; return one record per turn.
+
+    By default the recorded gold extraction is replayed (deterministic). Pass ``live_extractor`` to use a real model.
+    """
     ctx_data = dataset["default_ctx"] if case["ctx"] == "default" else case["ctx"]
     ctx = Ctx.from_dict(ctx_data)
     fault = case.get("fault") or {}
@@ -40,7 +58,7 @@ def run_case(case: dict, dataset: dict) -> list[dict]:
     store = store_cls(reminders)
     recorded = {t["message"]: t["gold_extraction"] for t in case["turns"] if t["gold_extraction"]}
     llm_fault = fault if fault.get("target") == "llm" else None
-    extractor = ReplayExtractor(recorded, llm_fault)
+    extractor = RecordingExtractor(live_extractor) if live_extractor else ReplayExtractor(recorded, llm_fault)
     agent = ReminderAgent(extractor, store, _ids())
     records = []
     dialogue: list[str] = []  # guarded messages of the current clarification dialogue (spec INV-4, v1.0.1)

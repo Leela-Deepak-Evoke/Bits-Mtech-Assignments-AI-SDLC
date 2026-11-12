@@ -1,0 +1,1113 @@
+{
+  "meta": {
+    "mode": "live",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "runs_per_case": 3,
+    "split": "all",
+    "timestamp": "2026-11-12 18:31:44Z",
+    "cases": 41
+  },
+  "metrics": {
+    "EVAL-2 first-pass extraction validity": {
+      "n": 126,
+      "rate": 0.8571
+    },
+    "EVAL-3 intent accuracy": {
+      "n": 120,
+      "rate": 1.0
+    },
+    "EVAL-4 title-span accuracy": {
+      "n": 69,
+      "rate": 0.913
+    },
+    "EVAL-13 run-to-run stability": {
+      "n": 41,
+      "rate": 0.9024
+    }
+  },
+  "layer1_2_safety_findings": 65,
+  "cases": [
+    {
+      "id": "N-01",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": [
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        }
+      ]
+    },
+    {
+      "id": "N-02",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": [
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        }
+      ]
+    },
+    {
+      "id": "N-03",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "N-04",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "N-05",
+      "final_types": [
+        "reminder_rescheduled",
+        "reminder_rescheduled",
+        "reminder_rescheduled"
+      ],
+      "stable": true,
+      "expected_type": "reminder_rescheduled",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        }
+      ]
+    },
+    {
+      "id": "N-06",
+      "final_types": [
+        "reminder_snoozed",
+        "reminder_snoozed",
+        "error"
+      ],
+      "stable": false,
+      "expected_type": "reminder_snoozed",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.type",
+          "detail": "expected reminder_snoozed, got error"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        }
+      ]
+    },
+    {
+      "id": "N-07",
+      "final_types": [
+        "error",
+        "reminder_snoozed",
+        "reminder_snoozed"
+      ],
+      "stable": false,
+      "expected_type": "reminder_snoozed",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.type",
+          "detail": "expected reminder_snoozed, got error"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        }
+      ]
+    },
+    {
+      "id": "N-08",
+      "final_types": [
+        "reminder_rescheduled",
+        "reminder_rescheduled",
+        "reminder_rescheduled"
+      ],
+      "stable": true,
+      "expected_type": "reminder_rescheduled",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        }
+      ]
+    },
+    {
+      "id": "B-01",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "B-02",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "B-03",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "B-04",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "B-05",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "B-06",
+      "final_types": [
+        "reminder_created",
+        "clarification_needed",
+        "refused"
+      ],
+      "stable": false,
+      "expected_type": "refused",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.type",
+          "detail": "expected refused, got reminder_created"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.type",
+          "detail": "expected refused, got clarification_needed"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        }
+      ]
+    },
+    {
+      "id": "B-07",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "B-08",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "B-09",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "A-01",
+      "final_types": [
+        "clarification_needed",
+        "clarification_needed",
+        "clarification_needed"
+      ],
+      "stable": true,
+      "expected_type": "clarification_needed",
+      "findings": []
+    },
+    {
+      "id": "A-02",
+      "final_types": [
+        "clarification_needed",
+        "clarification_needed",
+        "clarification_needed"
+      ],
+      "stable": true,
+      "expected_type": "clarification_needed",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.missing_fields",
+          "detail": "expected ['date', 'time_meridiem'] (exact), got ['date']"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.missing_fields",
+          "detail": "expected ['date', 'time_meridiem'] (exact), got ['date']"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.missing_fields",
+          "detail": "expected ['date', 'time_meridiem'] (exact), got ['date']"
+        }
+      ]
+    },
+    {
+      "id": "A-03",
+      "final_types": [
+        "clarification_needed",
+        "clarification_needed",
+        "clarification_needed"
+      ],
+      "stable": true,
+      "expected_type": "clarification_needed",
+      "findings": []
+    },
+    {
+      "id": "A-04",
+      "final_types": [
+        "clarification_needed",
+        "clarification_needed",
+        "clarification_needed"
+      ],
+      "stable": true,
+      "expected_type": "clarification_needed",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        }
+      ]
+    },
+    {
+      "id": "A-05",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": [
+        {
+          "run": 1,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        }
+      ]
+    },
+    {
+      "id": "A-06",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": [
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        }
+      ]
+    },
+    {
+      "id": "M-01",
+      "final_types": [
+        "clarification_needed",
+        "clarification_needed",
+        "clarification_needed"
+      ],
+      "stable": true,
+      "expected_type": "clarification_needed",
+      "findings": []
+    },
+    {
+      "id": "M-02",
+      "final_types": [
+        "clarification_needed",
+        "clarification_needed",
+        "clarification_needed"
+      ],
+      "stable": true,
+      "expected_type": "clarification_needed",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        }
+      ]
+    },
+    {
+      "id": "M-03",
+      "final_types": [
+        "clarification_needed",
+        "clarification_needed",
+        "clarification_needed"
+      ],
+      "stable": true,
+      "expected_type": "clarification_needed",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        }
+      ]
+    },
+    {
+      "id": "X-01",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "X-02",
+      "final_types": [
+        "clarification_needed",
+        "clarification_needed",
+        "clarification_needed"
+      ],
+      "stable": true,
+      "expected_type": "clarification_needed",
+      "findings": []
+    },
+    {
+      "id": "X-03",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "X-04",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "X-05",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "X-06",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "X-07",
+      "final_types": [
+        "refused",
+        "refused",
+        "error"
+      ],
+      "stable": false,
+      "expected_type": "refused",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "duration span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "target span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.type",
+          "detail": "expected refused, got error"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "soft": true,
+          "layer": 3,
+          "check": "L3.llm-calls",
+          "detail": "2 calls, limit 1"
+        }
+      ]
+    },
+    {
+      "id": "X-08",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "D-01",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "D-02",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "D-03",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "D-04",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": [
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 0,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 1,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "title span does not match message[start:end]"
+        },
+        {
+          "run": 2,
+          "turn": 0,
+          "layer": 2,
+          "check": "INV-3",
+          "detail": "time span does not match message[start:end]"
+        }
+      ]
+    },
+    {
+      "id": "D-05",
+      "final_types": [
+        "reminder_created",
+        "reminder_created",
+        "reminder_created"
+      ],
+      "stable": true,
+      "expected_type": "reminder_created",
+      "findings": []
+    },
+    {
+      "id": "D-06",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": "refused",
+      "findings": []
+    },
+    {
+      "id": "D-07",
+      "final_types": [
+        "refused",
+        "refused",
+        "refused"
+      ],
+      "stable": true,
+      "expected_type": null,
+      "findings": []
+    }
+  ]
+}

@@ -2,9 +2,9 @@
   "meta": {
     "mode": "replay",
     "split": "all",
-    "label": "after repair cycles 1-5",
+    "label": "regression after executor change",
     "python": "3.13.13",
-    "timestamp": "2026-11-12 17:24:05Z",
+    "timestamp": "2026-11-12 18:17:34Z",
     "dataset_sha256": "3ee34f86f080c9b2142d02181a0d5bdfc5b1bcaca4ff0ab18e90b8e1b7ef4363",
     "thresholds_sha256": "0e7b5587fefdd1f0d8b8b8582abafd33d3ff37d1885b63b3a2bf22c60ce28615",
     "extractor": "replay of dataset gold_extraction (no language model was called)"
@@ -29,15 +29,7 @@
       }
     },
     "global_findings": [],
-    "static_gates": {
-      "ok": true,
-      "repair_cycles": 0,
-      "final": {
-        "compile": true,
-        "format": true,
-        "lint": true
-      }
-    },
+    "static_gates": null,
     "recommendation": "ACCEPT_RECOMMENDED (replay scope only)",
     "human_decision": "PENDING - record with `python .harness/log.py decision --decision ACCEPT|REJECT --by <name>`"
   },
@@ -214,7 +206,7 @@
       "value": 50.0,
       "class": "soft",
       "mode": "both",
-      "measured": 1.237,
+      "measured": 1.931,
       "n": 45,
       "ci95": null,
       "status": "PASS"
@@ -291,7 +283,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 2.369,
+          "latency_ms": 2.407,
           "findings": []
         }
       ]
@@ -342,7 +334,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.822,
+          "latency_ms": 0.845,
           "findings": []
         }
       ]
@@ -397,7 +389,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 0.744,
+          "latency_ms": 0.772,
           "findings": []
         }
       ]
@@ -452,7 +444,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 0.742,
+          "latency_ms": 0.759,
           "findings": []
         }
       ]
@@ -505,7 +497,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 1.026,
+          "latency_ms": 0.994,
           "findings": []
         }
       ]
@@ -560,7 +552,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 1.237,
+          "latency_ms": 1.951,
           "findings": []
         }
       ]
@@ -619,7 +611,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 1.146,
+          "latency_ms": 1.931,
           "findings": []
         }
       ]
@@ -676,7 +668,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 0.965,
+          "latency_ms": 1.189,
           "findings": []
         }
       ]
@@ -731,7 +723,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 0.751,
+          "latency_ms": 0.784,
           "findings": []
         }
       ]
@@ -782,7 +774,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.732,
+          "latency_ms": 1.206,
           "findings": []
         }
       ]
@@ -837,7 +829,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 0.717,
+          "latency_ms": 1.129,
           "findings": []
         }
       ]
@@ -888,7 +880,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.739,
+          "latency_ms": 1.155,
           "findings": []
         }
       ]
@@ -922,7 +914,7 @@
             "reason": "out_of_range"
           },
           "llm_calls": 1,
-          "latency_ms": 0.842,
+          "latency_ms": 1.345,
           "findings": []
         }
       ]
@@ -956,7 +948,7 @@
             "reason": "input_invalid"
           },
           "llm_calls": 1,
-          "latency_ms": 0.767,
+          "latency_ms": 1.088,
           "findings": []
         }
       ]
@@ -1013,7 +1005,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 0.748,
+          "latency_ms": 0.79,
           "findings": []
         }
       ]
@@ -1068,7 +1060,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 1.708,
+          "latency_ms": 1.642,
           "findings": []
         }
       ]
@@ -1119,7 +1111,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.82,
+          "latency_ms": 0.785,
           "findings": []
         }
       ]
@@ -1170,7 +1162,7 @@
             }
           },
           "llm_calls": 1,
-          "latency_ms": 0.741,
+          "latency_ms": 1.449,
           "findings": []
         }
       ]
@@ -1223,7 +1215,7 @@
             }
           },
           "llm_calls": 1,
-          "latency_ms": 0.724,
+          "latency_ms": 1.348,
           "findings": []
         }
       ]
@@ -1274,7 +1266,7 @@
             }
           },
           "llm_calls": 1,
-          "latency_ms": 0.765,
+          "latency_ms": 0.815,
           "findings": []
         }
       ]
@@ -1333,7 +1325,7 @@
             ]
           },
           "llm_calls": 1,
-          "latency_ms": 0.849,
+          "latency_ms": 0.869,
           "findings": []
         }
       ]
@@ -1384,7 +1376,7 @@
             }
           },
           "llm_calls": 1,
-          "latency_ms": 0.681,
+          "latency_ms": 0.697,
           "findings": []
         },
         {
@@ -1419,7 +1411,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.701,
+          "latency_ms": 0.717,
           "findings": []
         }
       ]
@@ -1470,7 +1462,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.718,
+          "latency_ms": 0.744,
           "findings": []
         }
       ]
@@ -1523,7 +1515,7 @@
             }
           },
           "llm_calls": 1,
-          "latency_ms": 0.74,
+          "latency_ms": 0.779,
           "findings": []
         }
       ]
@@ -1570,7 +1562,7 @@
             "partial": {}
           },
           "llm_calls": 1,
-          "latency_ms": 0.688,
+          "latency_ms": 1.73,
           "findings": []
         }
       ]
@@ -1621,7 +1613,7 @@
             }
           },
           "llm_calls": 1,
-          "latency_ms": 0.732,
+          "latency_ms": 1.428,
           "findings": []
         }
       ]
@@ -1655,7 +1647,7 @@
             "reason": "input_invalid"
           },
           "llm_calls": 0,
-          "latency_ms": 0.013,
+          "latency_ms": 0.016,
           "findings": []
         }
       ]
@@ -1703,7 +1695,7 @@
             "partial": {}
           },
           "llm_calls": 1,
-          "latency_ms": 0.65,
+          "latency_ms": 0.99,
           "findings": []
         }
       ]
@@ -1754,7 +1746,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.724,
+          "latency_ms": 0.945,
           "findings": []
         }
       ]
@@ -1788,7 +1780,7 @@
             "reason": "input_invalid"
           },
           "llm_calls": 0,
-          "latency_ms": 0.009,
+          "latency_ms": 0.01,
           "findings": []
         }
       ]
@@ -1822,7 +1814,7 @@
             "reason": "past_time"
           },
           "llm_calls": 1,
-          "latency_ms": 0.76,
+          "latency_ms": 0.771,
           "findings": []
         }
       ]
@@ -1856,7 +1848,7 @@
             "reason": "unsupported_intent"
           },
           "llm_calls": 1,
-          "latency_ms": 0.625,
+          "latency_ms": 0.622,
           "findings": []
         }
       ]
@@ -1890,7 +1882,7 @@
             "reason": "snooze_limit_reached"
           },
           "llm_calls": 1,
-          "latency_ms": 0.697,
+          "latency_ms": 0.714,
           "findings": []
         }
       ]
@@ -1924,7 +1916,7 @@
             "reason": "reminder_not_found"
           },
           "llm_calls": 1,
-          "latency_ms": 0.705,
+          "latency_ms": 0.735,
           "findings": []
         }
       ]
@@ -1958,7 +1950,7 @@
             "reason": "unsupported_intent"
           },
           "llm_calls": 1,
-          "latency_ms": 0.63,
+          "latency_ms": 0.708,
           "findings": []
         }
       ]
@@ -2009,7 +2001,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.71,
+          "latency_ms": 0.868,
           "findings": []
         }
       ]
@@ -2053,7 +2045,7 @@
             "reason": "unsupported_intent"
           },
           "llm_calls": 1,
-          "latency_ms": 0.954,
+          "latency_ms": 0.664,
           "findings": []
         }
       ]
@@ -2108,7 +2100,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.742,
+          "latency_ms": 0.734,
           "findings": []
         }
       ]
@@ -2159,7 +2151,7 @@
             "assumptions": []
           },
           "llm_calls": 1,
-          "latency_ms": 0.735,
+          "latency_ms": 0.741,
           "findings": []
         }
       ]
@@ -2193,7 +2185,7 @@
             "reason": "unsupported_intent"
           },
           "llm_calls": 1,
-          "latency_ms": 0.647,
+          "latency_ms": 0.67,
           "findings": []
         }
       ]
@@ -2228,7 +2220,7 @@
             "reason": "unsupported_intent"
           },
           "llm_calls": 1,
-          "latency_ms": 0.638,
+          "latency_ms": 0.64,
           "findings": []
         }
       ]
@@ -2262,7 +2254,7 @@
             "code": "llm_timeout"
           },
           "llm_calls": 1,
-          "latency_ms": 0.016,
+          "latency_ms": 0.034,
           "findings": []
         }
       ]
@@ -2296,7 +2288,7 @@
             "code": "llm_schema_violation"
           },
           "llm_calls": 2,
-          "latency_ms": 0.043,
+          "latency_ms": 0.074,
           "findings": []
         }
       ]
@@ -2330,7 +2322,7 @@
             "code": "storage_error"
           },
           "llm_calls": 1,
-          "latency_ms": 0.728,
+          "latency_ms": 0.768,
           "findings": []
         }
       ]

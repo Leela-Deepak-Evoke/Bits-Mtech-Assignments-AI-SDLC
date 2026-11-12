@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+*.egg-info/
+.venv/
+venv/
+
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+
+# Local data files created while running the apps
+reminders.json
+tasks.json
