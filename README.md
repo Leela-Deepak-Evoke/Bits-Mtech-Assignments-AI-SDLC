@@ -38,6 +38,39 @@ Both share the same logic and the same JSON data file.
 | `interfaces/cli`, `interfaces/api` | The terminal and HTTP front-ends |
 | `app/` | Config and wiring everything together |
 
+### Flow diagram
+
+```mermaid
+flowchart TD
+    U([User]) --> CLI["CLI: todo command<br/>(Typer)"]
+    U --> API["HTTP API<br/>(FastAPI)"]
+    CLI --> SVC
+    API -->|"validate request (Pydantic)"| SVC["Task Service<br/>create / update / list / delete"]
+    SVC --> DOM["Domain rules<br/>validation, status transitions,<br/>overdue check, next-task suggestion"]
+    DOM -->|"valid"| REPO["Repository interface"]
+    DOM -->|"invalid"| ERR["Error<br/>(CLI message / API 4xx)"]
+    REPO --> JSON[("JSON file store")]
+    CLK["Clock (UTC)"] -.-> SVC
+    JSON --> REPO --> SVC
+    SVC --> OUT["Task output<br/>(with computed overdue flag)"]
+    OUT --> CLI
+    OUT --> API
+    ERR --> CLI
+    ERR --> API
+```
+
+**Task status flow**
+
+```mermaid
+stateDiagram-v2
+    [*] --> pending: create
+    pending --> in_progress: start
+    pending --> completed: complete
+    in_progress --> pending: back to pending
+    in_progress --> completed: complete
+    completed --> pending: reopen
+```
+
 ### Run it
 
 ```bash
@@ -60,6 +93,45 @@ An agent that reads an English message and creates a structured reminder. It can
 - Output must match JSON schemas, and safety rules reject unsupported requests.
 - Quality is measured on an evaluation dataset against set thresholds.
 
+### Flow diagram
+
+```mermaid
+flowchart TD
+    U([User message]) --> CLI["CLI: remind"]
+    CLI --> SAN["Sanitize input<br/>(length, safety checks)"]
+    SAN --> AG["Reminder Agent"]
+    AG --> LLM["LLM extractor (Claude)<br/>intent + text spans only"]
+    LLM --> SCH{"Matches<br/>extraction schema?"}
+    SCH -->|no| REF["Refused / error response"]
+    SCH -->|yes| INT{"Intent?"}
+    INT -->|"unsupported"| REF
+    INT -->|"create / reschedule / snooze"| RES["Resolver (plain code, no LLM)<br/>dates, times, durations, timezone"]
+    RES --> OK{"Enough info<br/>and unambiguous?"}
+    OK -->|no| CLAR["Ask a clarifying question<br/>(max 3 rounds)"]
+    CLAR --> U
+    OK -->|yes| STORE[("Reminder store")]
+    STORE --> INV["Invariant checks"]
+    INV --> RESP["Structured response<br/>(validated against schema)"]
+    REF --> RESP
+    RESP --> U
+```
+
+**How quality is checked**
+
+```mermaid
+flowchart LR
+    DS[("Eval dataset")] --> EX["Executor<br/>runs cases through the agent"]
+    EX --> L1["Layer 1<br/>structure / schema"]
+    EX --> L2["Layer 2<br/>invariants"]
+    EX --> L3["Layer 3<br/>semantic correctness"]
+    L1 --> M["Metrics"]
+    L2 --> M
+    L3 --> M
+    M --> T{"Meets<br/>thresholds?"}
+    T -->|yes| P([PASS])
+    T -->|no| F([FAIL])
+```
+
 ### Run it
 
 ```bash
@@ -71,6 +143,19 @@ python evals/run_eval.py    # run the evaluation set
 ```
 
 ---
+
+## Overall workflow (both parts)
+
+```mermaid
+flowchart LR
+    C["Constitution<br/>(rules)"] --> S["Spec<br/>(requirements + tests)"]
+    S --> P["Plan"]
+    P --> T["Tasks"]
+    T --> G["AI generates code"]
+    G --> H["Harness<br/>lint → security → tests"]
+    H -->|fail| G
+    H -->|pass| D(["Final code + evidence"])
+```
 
 ## What's in each part
 
